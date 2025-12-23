@@ -1,20 +1,34 @@
-let audioCtx;
+let audioContext;
+let sourceNode;
 let gainNode;
-let source;
 
-function initBoost(audioElement) {
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  source = audioCtx.createMediaElementSource(audioElement);
+const audio = document.getElementById("audio");
+const slider = document.getElementById("boostSlider");
+const boostValue = document.getElementById("boostValue");
 
-  gainNode = audioCtx.createGain();
+function initAudio() {
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+  sourceNode = audioContext.createMediaElementSource(audio);
+  gainNode = audioContext.createGain();
+
   gainNode.gain.value = 1;
 
-  source.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
+  sourceNode.connect(gainNode);
+  gainNode.connect(audioContext.destination);
 }
 
-function setBoost(value) {
+audio.addEventListener("play", () => {
+  if (!audioContext) {
+    initAudio();
+  }
+});
+
+slider.addEventListener("input", () => {
+  const value = parseFloat(slider.value);
+  boostValue.textContent = value.toFixed(1) + "x";
+
   if (gainNode) {
     gainNode.gain.value = value;
   }
-}
+});

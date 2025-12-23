@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Volume Booster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Your existing CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <input
+      id="urlInput"
+      type="text"
+      placeholder="https://example.com"
+    >
+    <button id="loadBtn">Load</button>
+  </header>
+
+  <!-- Controls -->
+  <section class="controls">
+    <label>
+      Volume Boost:
+      <span id="boostValue">1.0x</span>
+    </label>
+
+    <input
+      id="boostSlider"
+      type="range"
+      min="1"
+      max="5"
+      step="0.1"
+      value="1"
+    >
+  </section>
+
+  <!-- Website Frame -->
+  <iframe
+    id="siteFrame"
+    allow="autoplay; fullscreen; encrypted-media"
+  ></iframe>
+
+  <!-- Your existing JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,50 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Universal Volume Booster</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Navine Volume Booster</title>
 
-  <!-- Your existing CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Mobile & scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- SEO / Meta -->
+  <meta name="description" content="Universal website volume booster using iframe playback." />
+  <meta name="theme-color" content="#7a3cff" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- Top Bar -->
-  <header class="top-bar">
-    <input
-      id="urlInput"
-      type="text"
-      placeholder="https://example.com"
-    >
-    <button id="loadBtn">Load</button>
-  </header>
+  <!-- App Wrapper -->
+  <main id="app">
 
-  <!-- Controls -->
-  <section class="controls">
-    <label>
-      Volume Boost:
-      <span id="boostValue">1.0x</span>
-    </label>
+    <!-- Top Navigation -->
+    <header class="top-bar" role="banner">
+      <form id="urlForm" autocomplete="off">
+        <input
+          id="urlInput"
+          name="url"
+          type="url"
+          inputmode="url"
+          placeholder="Enter website URL (https://...)"
+          aria-label="Website URL"
+          required
+        />
 
-    <input
-      id="boostSlider"
-      type="range"
-      min="1"
-      max="5"
-      step="0.1"
-      value="1"
-    >
-  </section>
+        <button
+          id="loadBtn"
+          type="submit"
+          aria-label="Load website"
+        >
+          Load
+        </button>
+      </form>
+    </header>
 
-  <!-- Website Frame -->
-  <iframe
-    id="siteFrame"
-    allow="autoplay; fullscreen; encrypted-media"
-  ></iframe>
+    <!-- Control Panel -->
+    <section class="controls" aria-label="Volume controls">
+      <div class="control-group">
+        <label for="boostSlider">
+          Volume Boost
+          <output id="boostValue" for="boostSlider">1.0×</output>
+        </label>
 
-  <!-- Your existing JS -->
+        <input
+          id="boostSlider"
+          type="range"
+          min="1"
+          max="5"
+          step="0.1"
+          value="1"
+        />
+      </div>
+    </section>
+
+    <!-- Content Area -->
+    <section class="content" role="region" aria-label="Website viewer">
+      <iframe
+        id="siteFrame"
+        title="Website Viewer"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        allow="autoplay; fullscreen; encrypted-media"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
+      ></iframe>
+    </section>
+
+  </main>
+
+  <!-- External JS -->
   <script src="script.js"></script>
 
 </body>
